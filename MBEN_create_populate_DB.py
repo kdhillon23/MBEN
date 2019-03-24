@@ -2,7 +2,7 @@ import sqlite3
 import csv
 
 #Read data from CSV into a new database called XYZ.db
-DBNAME = 'XYZ.db'
+DBNAME = 'Sheet1.csv'
 
 #start of funct to set up db
 def db_setup():
@@ -12,26 +12,26 @@ def db_setup():
         conn = sqlite3.connect('DBNAME')
         cur = conn.cursor()
     except Exception as e:
-        print("Error creating XYZ db: ",e)
+        print("Error creating Subject db: ",e)
         conn.close()
     #end of attempt to create DB
 
     #start of attempt to drop QRS table
     try:
         statement = '''
-        DROP TABLE IF EXISTS 'QRS';
+        DROP TABLE IF EXISTS 'Course';
         '''
         cur.execute(statement)
         conn.commit()
     except Exception as e:
-        print("Error dropping QRS table: ",e)
+        print("Error dropping Course table: ",e)
         conn.close()
     #end of attempt to drop QRS table
 
     #start of attempt to create QRS table
     try:
         statement = '''
-        CREATE TABLE 'QRS' (
+        CREATE TABLE 'Course' (
         'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
         'col1' TEXT,
         'col2' INTEGER,
@@ -41,7 +41,7 @@ def db_setup():
         cur.execute(statement)
         conn.commit()
     except Exception as e:
-        print("Error creating QRS table: ",e)
+        print("Error creating Course table: ",e)
         conn.close()
     #end of attempt to create QRS table
 #end of funct to set up db
@@ -60,12 +60,12 @@ def db_insert():
                 #here's where you process rows & row data using list manipulation
 
                 insertion = (None,row[0],row[1],row[2])
-                statement = 'INSERT INTO QRS '
+                statement = 'INSERT INTO Course '
                 statement += 'VALUES (?,?,?,?)'
                 cur.execute(statement,insertion)
                 conn.commit()
     except Exception as e:
-        print("Error inserting ABC.csv: ",e)
+        print("Error inserting Sheet1.csv: ",e)
         conn.close()
     #end insert of ABC.csv
 
