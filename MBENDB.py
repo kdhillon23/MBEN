@@ -2,7 +2,7 @@ import sqlite3
 import csv
 
 #Read data from CSV into a new database called XYZ.db
-DBNAME = 'Sheet1.db'
+DBNAME = 'Sheet1.csv'
 
 #start of funct to set up db
 def db_setup():
