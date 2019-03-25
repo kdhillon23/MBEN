@@ -2,7 +2,7 @@ import sqlite3
 import csv
 
 #Read data from CSV into a new database called XYZ.db
-DBNAME = 'Sheet1.csv'
+DBNAME = 'XYZ.db'
 
 #start of funct to set up db
 def db_setup():
@@ -12,7 +12,7 @@ def db_setup():
         conn = sqlite3.connect(DBNAME)
         cur = conn.cursor()
     except Exception as e:
-        print("Error creating Subject db: ",e)
+        print("Error creating XYZ db: ",e)
         conn.close()
     #end of attempt to create DB
 
@@ -53,7 +53,7 @@ def db_insert():
 
     #start insert of ABC.csv
     try:
-        with open('ABC.csv', encoding='utf-8') as thisCSV:
+        with open('Sheet1.csv', encoding='utf-8') as thisCSV:
             csvReader = csv.reader(thisCSV)
             next(csvReader, None)
             for row in csvReader:
