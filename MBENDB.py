@@ -65,7 +65,7 @@ def db_insert():
                 cur.execute(statement,insertion)
                 conn.commit()
     except Exception as e:
-        print("Error inserting Sheet1.db: ",e)
+        print("Error inserting Sheet1.csv: ",e)
         conn.close()
     #end insert of ABC.csv
 
