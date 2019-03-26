@@ -33,7 +33,8 @@ def db_setup():
         statement = '''
         CREATE TABLE 'Course' (
         'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
-        'Course' INTEGER);
+        'Course' INTEGER
+        );
         '''
         cur.execute(statement)
         conn.commit()
@@ -59,13 +60,62 @@ def db_insert():
 
                 insertion = (None,row[2])
                 statement = 'INSERT INTO Course '
-                statement += 'VALUES (?,?,?)'
+                statement += 'VALUES (?,?)'
                 cur.execute(statement,insertion)
                 conn.commit()
     except Exception as e:
         print("Error inserting Sheet1.csv: ",e)
         conn.close()
     #end insert of ABC.csv
+
+    try:
+        statement = '''
+        DROP TABLE IF EXISTS 'Subject';
+        '''
+        cur.execute(statement)
+        conn.commit()
+    except Exception as e:
+        print("Error dropping Subject table: ",e)
+        conn.close()
+    #end of attempt to drop QRS table
+
+    #start of attempt to create QRS table
+    try:
+        statement = '''
+        CREATE TABLE 'Subject' (
+        'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
+        'Subject' INTEGER
+        );
+        '''
+        cur.execute(statement)
+        conn.commit()
+    except Exception as e:
+        print("Error creating Subject table: ",e)
+        conn.close()
+
+
+def db_insert():
+    
+    conn = sqlite3.connect(DBNAME)
+    cur = conn.cursor()
+
+    #start insert of ABC.csv
+    try:
+        with open('Sheet1.csv', encoding='utf-8') as thisCSV:
+            csvReader = csv.reader(thisCSV)
+            next(csvReader, None)
+            for row in csvReader:
+                #here's where you process rows & row data using list manipulation
+
+                insertion = (None,row[1])
+                statement = 'INSERT INTO Subject '
+                statement += 'VALUES (?,?)'
+                
+                cur.execute(statement,insertion)
+                conn.commit()
+    except Exception as e:
+        print("Error inserting Sheet1.csv: ",e)
+        conn.close()
 
 
 
