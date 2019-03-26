@@ -33,7 +33,6 @@ def db_setup():
         statement = '''
         CREATE TABLE 'Course' (
         'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
-        'Framework' TEXT,
         'Subject' INTEGER,›
         'Course' REAL
         );
@@ -62,7 +61,7 @@ def db_insert():
 
                 insertion = (None,row[0],row[3])
                 statement = 'INSERT INTO Course '
-                statement += 'VALUES (?,?)'
+                statement += 'VALUES (?,?,?)'
                 cur.execute(statement,insertion)
                 conn.commit()
     except Exception as e:
