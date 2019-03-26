@@ -33,9 +33,7 @@ def db_setup():
         statement = '''
         CREATE TABLE 'Course' (
         'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
-        'Subject' INTEGER,›
-        'Course' REAL
-        );
+        'Course' INTEGER);
         '''
         cur.execute(statement)
         conn.commit()
@@ -59,7 +57,7 @@ def db_insert():
             for row in csvReader:
                 #here's where you process rows & row data using list manipulation
 
-                insertion = (None,row[0],row[3])
+                insertion = (None,row[2])
                 statement = 'INSERT INTO Course '
                 statement += 'VALUES (?,?,?)'
                 cur.execute(statement,insertion)
