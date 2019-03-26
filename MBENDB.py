@@ -33,9 +33,9 @@ def db_setup():
         statement = '''
         CREATE TABLE 'Course' (
         'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
-        'col1' TEXT,
-        'col2' INTEGER,
-        'col3' REAL
+        'Framework' TEXT,
+        'Subject' INTEGER,
+        'Course' REAL
         );
         '''
         cur.execute(statement)
