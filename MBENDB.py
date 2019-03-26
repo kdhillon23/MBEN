@@ -34,7 +34,7 @@ def db_setup():
         CREATE TABLE 'Course' (
         'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
         'Framework' TEXT,
-        'Subject' INTEGER,
+        'Subject' INTEGER,›
         'Course' REAL
         );
         '''
@@ -42,6 +42,33 @@ def db_setup():
         conn.commit()
     except Exception as e:
         print("Error creating Course table: ",e)
+        conn.close()
+
+    try:
+        statement = '''
+        DROP TABLE IF EXISTS 'Course';
+        '''
+        cur.execute(statement)
+        conn.commit()
+    except Exception as e:
+        print("Error dropping Subject table: ",e)
+        conn.close()
+    #end of attempt to drop QRS table
+
+    #start of attempt to create QRS table
+    try:
+        statement = '''
+        CREATE TABLE 'Subject' (
+        'Id' INTEGER PRIMARY KEY AUTOINCREMENT,
+        'Framework' TEXT,
+        'Subject' INTEGER,›
+        'Course' REAL
+        );
+        '''
+        cur.execute(statement)
+        conn.commit()
+    except Exception as e:
+        print("Error creating Subject table: ",e)
         conn.close()
     #end of attempt to create QRS table
 #end of funct to set up db
