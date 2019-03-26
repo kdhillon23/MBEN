@@ -86,7 +86,7 @@ def db_insert():
             for row in csvReader:
                 #here's where you process rows & row data using list manipulation
 
-                insertion = (None,row[0],row[1],row[2])
+                insertion = (None,row[3])
                 statement = 'INSERT INTO Course '
                 statement += 'VALUES (?,?,?,?)'
                 cur.execute(statement,insertion)
